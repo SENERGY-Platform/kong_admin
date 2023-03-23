@@ -19,6 +19,6 @@ func (h *RouteHandler) Handle(w http.ResponseWriter, r *http.Request) error {
 func New(kongClient *kong_client.KongClient, config *config.Config) HTTPHandler {
 	return HTTPHandler{
 		Handler: &RouteHandler{Config: config, KongClient: kongClient},
-		Methods: []string{"POST"},
+		Methods: []string{"GET"},
 	}
 }
