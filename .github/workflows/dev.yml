@@ -3,7 +3,7 @@ name: 'Dev Deployment'
 on:
   push:
     branches:
-      - master
+      - dev
   workflow_dispatch:
 
 jobs:
@@ -35,8 +35,8 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: |
-            smartenergyplatform/kong-admin-proxy:prod
-            ghcr.io/senergy-platform/kong-admin-proxy:prod
+            smartenergyplatform/kong-admin-proxy:dev
+            ghcr.io/senergy-platform/kong-admin-proxy:dev
           target: prod
       - name: Deploy
         uses: wei/curl@v1
