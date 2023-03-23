@@ -76,3 +76,10 @@ func (h HTTPHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	status := HandleError(w, err)
 	log.Printf("%s - \"%s %s\" %d", r.RemoteAddr, r.Method, r.URL, status)
 }
+
+func SendResponse(w http.ResponseWriter, result interface{}) error {
+	w.Header().Set("Content-Type", "application/json")
+	enc := json.NewEncoder(w)
+	err := enc.Encode(result)
+	return err
+}

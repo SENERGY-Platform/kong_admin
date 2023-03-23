@@ -13,6 +13,11 @@ type RouteHandler struct {
 }
 
 func (h *RouteHandler) Handle(w http.ResponseWriter, r *http.Request) error {
+	routes, err := h.KongClient.LoadRoutes()
+	if err != nil {
+		return err
+	}
+	SendResponse(w, routes)
 	return nil
 }
 
