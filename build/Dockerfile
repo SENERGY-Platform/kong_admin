@@ -1,4 +1,4 @@
-FROM golang:1.18 AS builder
+FROM golang:1.27 AS builder
 ENV GO111MODULE=on
 
 COPY . /go/src/app
@@ -8,7 +8,7 @@ RUN git log -1 --oneline > version.txt
 WORKDIR /go/src/app/cmd
 RUN CGO_ENABLED=0 GOOS=linux go build -o ../app
 
-FROM golang:1.18 AS prod
+FROM alpine:3.24 AS prod
 WORKDIR /root
 
 COPY --from=builder /go/src/app/app .
